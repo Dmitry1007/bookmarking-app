@@ -25,6 +25,8 @@ module.exports = {
     "plugins": ["transform-runtime"]
   },
   plugins: [
-
+    new webpackExternalsPlugin('commonjs', [
+      'electron'
+    ])
   ]
 }
