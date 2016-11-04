@@ -17,3 +17,21 @@ db.on('value', (snapshot) => {
     store.emit('data-updated', categories, bookmarks)
   }
 })
+
+store.addCategory = (category) => {
+  categoriesRef.update(category)
+}
+
+store.deleteCategory = (catName) => {
+  // first check if an 'Uncategorized' category exists, if not, create it
+  if(!('Uncategorized' in categories)) {
+    categoriesRef.update({'Uncategorized': 'white'})
+  }
+
+  for (var key in bookmarks) {
+    if (bookmarks[key].category === catName) {
+      bookmarksRef.child(key).update({category: 'Uncategorized'})
+    }
+  }
+  categoriesRef.child(catName).remove()
+}
