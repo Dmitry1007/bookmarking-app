@@ -35,3 +35,13 @@ store.deleteCategory = (catName) => {
   }
   categoriesRef.child(catName).remove()
 }
+
+store.addBookmark = (bookmark) => {
+  bookmarksRef.push(bookmark)
+}
+
+store.deleteBookmark = (bookmarkId) => {
+  bookmarksRef.child(bookmarkId).remove()
+}
+
+export default store
