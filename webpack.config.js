@@ -2,9 +2,9 @@ var path    = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './app/main.js',
+  entry: './main.js',
   output: {
-    path: path.resolve(_dirname, './dist'),
+    path: path.resolve(__dirname, './dist'),
     filename: 'build.js'
   },
   module: {
@@ -25,7 +25,7 @@ module.exports = {
     "plugins": ["transform-runtime"]
   },
   plugins: [
-    new webpackExternalsPlugin('commonjs', [
+    new webpack.ExternalsPlugin('commonjs', [
       'electron'
     ])
   ]
